@@ -36,7 +36,7 @@ The repository includes a scheduled workflow that checks the configured reposito
 
 In the repository's **Settings → Secrets and variables → Actions**, add:
 
-- Repository variable `GITHUB_REPOS`: comma-separated `owner/repository` names, such as `python/cpython,kubernetes/minikube`.
+- Repository variable `ISSUE_SCOUT_REPOS`: comma-separated `owner/repository` names, such as `python/cpython,kubernetes/minikube`.
 - Repository secret `SLACK_WEBHOOK_URL`: your Slack incoming webhook URL.
 - Optional repository secret `ISSUE_SCOUT_GITHUB_TOKEN`: a read-only GitHub token if the public API rate limit is reached.
 

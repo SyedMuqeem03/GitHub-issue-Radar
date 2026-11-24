@@ -21,12 +21,12 @@ jobs:
         id: config
         shell: bash
         env:
-          GITHUB_REPOS: ${{ vars.GITHUB_REPOS }}
+          GITHUB_REPOS: ${{ vars.ISSUE_SCOUT_REPOS }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           if [[ -z "$GITHUB_REPOS" || -z "$SLACK_WEBHOOK_URL" ]]; then
             echo "configured=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Set the GITHUB_REPOS variable and SLACK_WEBHOOK_URL secret to enable Issue Scout."
+            echo "::notice::Set the ISSUE_SCOUT_REPOS variable and SLACK_WEBHOOK_URL secret to enable Issue Scout."
           else
             echo "configured=true" >> "$GITHUB_OUTPUT"
           fi
@@ -53,7 +53,7 @@ jobs:
       - name: Check monitored repositories
         if: steps.config.outputs.configured == 'true'
         env:
-          GITHUB_REPOS: ${{ vars.GITHUB_REPOS }}
+          GITHUB_REPOS: ${{ vars.ISSUE_SCOUT_REPOS }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           GITHUB_TOKEN: ${{ secrets.ISSUE_SCOUT_GITHUB_TOKEN }}
           DATABASE_PATH: data/issue-scout.sqlite3
